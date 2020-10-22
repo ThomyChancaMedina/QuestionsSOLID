@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Grupo2 Verano 2020</string>
+
+    <string name="title">Cuestionario de Principios SOLID</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="questionArray">
+
+        <item>¿Sueles usar principios solid en tus proyectos?</item>
+
+        <item>Cuestionario de Principios SOLID</item>
+        <item>¿Sueles usar principios solid en tus proyectos?</item>
+        <item>¿Sabes el significado de las siglas SOLID?</item>
+        <item>el Principio de segregación es lo mismo que “Interface Segregation Principle”</item>
+        <item>¿si en una clase estoy mostrando los datos y a la vez esta misma clase trae los datos para mostrarlos en la View, estoy violando Single Responsibility Principle ?</item>
+        <item>¿El Single Responsibility principle me ayuda a que mi interfaz sea bien visto por el usuario?</item>
+        <item>¿Es obligatorio que mi clase tenga muchos métodos públicos ?</item>
+        <item>¿Si una clase tiene muchos import es que estoy haciendo un buen trabajo en cada una de mis otras clases y no estoy haciendo trabajo de mas?</item>
+        <item>¿si no soy capaz de escribir mi test unitarios tengo que mirar mis interfaces como guiá?</item>
+        <item>¿mi clase tiene muchas lineas ? Es un indicio de que no estoy organizando mi código y sera menos manejable</item>
+        <item>¿Por reglas de Open Close el extender el comportamiento de mi app sin modificar mi código anterior, es una violación de este regla?</item>
+
+        <item>¿Crear clases polimórficas es importare ya que esta nos ayuda acoplar nuevas funcionalidades sin necesidad de modificar otras clases o métodos?</item>
+        <item>¿el Polimorfismo quiere decir que una clases padre es única y solo única capas de ser insustituible en el tiempo y que sus hijas comparten o puede adoptar la forma del padre, y así poder trabajar con este ultimo?</item>
+        <item>¿La clase padre es algo que se puede cambiar?</item>
+        <item>El usar herencia es hipotecar su software, esto quiere decir que todo funciona bien al principio pero, con el tiempo te vas dando cuenta que ya no funciona bien la clase como al principio cuando la creaste por falta de más funcionalidades que necesitas crear</item>
+        <item>Las herencias son lo mismo que las composiciones</item>
+        <item>La composición es aquella que tiene  instancia de una clase que a su ves contiene instancia de otras clases implementando  funciones necesarias</item>
+        <item>El  inicio de desarrollo es más completo con herencia que con Composición</item>
+
+
+    </string-array>
+    <string name="btn_confirmation">Confirmar</string>
+</resources>
