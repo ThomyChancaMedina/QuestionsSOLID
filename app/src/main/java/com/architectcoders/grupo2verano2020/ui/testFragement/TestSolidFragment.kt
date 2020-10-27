@@ -22,7 +22,6 @@ class TestSolidFragment : Fragment() {
 
     var listAnswer: ArrayList<String> = arrayListOf()
 
-    var listSize: List<Int> = listOf()
     lateinit var navController: NavController
 
 
@@ -50,57 +49,30 @@ class TestSolidFragment : Fragment() {
 
         adapter.questions = questions.toList()
 
-
-        Log.d(TAG, "onViewCreated: all :. " + questions.size)
-
-        val allQuestion: Int = questions.toList().size - 1
-
-
         binding.bntCheck.setOnClickListener {
-            var num: Int? = null
 
             if (app.resultTest.testIud.contains(",")) {
                 val listResult = app.resultTest.testIud.split(",")
 
-                listResult.forEach {
+                for (i in questions.toList().indices) {
+                    listAnswer.add(i,"null")
+                }
 
+                listResult.forEach {
 
                     if (it.contains("::")) {
                         val last = it.split("::").last()
                         val answer = last.split("=")
-                        listSize = listSize + answer.last().toInt()
-                        listAnswer.add(answer.last().toInt(), last)
+                        listAnswer[answer.last().toInt()]=last
 
                     } else {
                         val answer = it.split("=")
-                        listSize = listSize + answer.last().toInt()
-                        listAnswer.add(answer.last().toInt(), it)
+                        listAnswer[answer.last().toInt()]=it
 
                     }
 
                 }
-
-//                for (i in questions.toList().indices) {
-//
-//                    for (j in listSize.indices) {
-////                        Log.d(TAG, "onViewCreated: thomy $i ::  == " + listSize[j])
-//
-//                        if (i == listSize[j]) {
-//                            num = listSize[j]
-//
-//                        }
-//
-//                    }
-//
-//
-//                    if (num == i)
-//                        listAnswer.add(it)
-//                    else
-//                        listAnswer.add("null")
-//
-//
-//                }
-                Log.d(TAG, "onViewCreated: thomy " + listAnswer.toString())
+                Log.d(TAG, "onViewCreated: thomy " +listAnswer.toString())
             }
         }
     }
