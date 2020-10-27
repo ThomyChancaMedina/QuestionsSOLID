@@ -1,23 +1,30 @@
 package com.architectcoders.grupo2verano2020.ui.testFragement
 
 
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.persistableBundleOf
 import androidx.recyclerview.widget.RecyclerView
+import com.architectcoders.grupo2verano2020.App
 import com.architectcoders.grupo2verano2020.R
 import com.architectcoders.grupo2verano2020.ui.common.basicDiffUtil
 import com.architectcoders.grupo2verano2020.ui.common.inflate
+import com.architectcoders.grupo2verano2020.ui.common.logD
 import kotlinx.android.synthetic.main.view_question.view.*
+import kotlin.properties.Delegates
 
-class TestSolidAdapter : RecyclerView.Adapter<TestSolidAdapter.ViewHolder>() {
+class TestSolidAdapter(val app: App) : RecyclerView.Adapter<TestSolidAdapter.ViewHolder>() {
+
 
     var questions: List<String> by basicDiffUtil(
         emptyList()
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
         val view = parent.inflate(R.layout.view_question, false)
-        return ViewHolder(view)
+        return ViewHolder(view, app)
     }
 
     override fun getItemCount(): Int = questions.size
@@ -30,17 +37,36 @@ class TestSolidAdapter : RecyclerView.Adapter<TestSolidAdapter.ViewHolder>() {
     }
 
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val TAG = ViewHolder::class.java.simpleName
+    class ViewHolder(view: View, app: App) : RecyclerView.ViewHolder(view) {
+        private val result = app.resultTest
+        private val listResult: ArrayList<String> = arrayListOf()
+
         fun bind(question: String) {
+
             itemView.text_question.text = question
             itemView.rdGroup.setOnCheckedChangeListener { _, checkedId ->
-                
+
+                val check: String = if (checkedId == 2131296357) "si" else "no"
+
+                val answer = check + "=" + position
+                listResult.add(check)
+
+                if (result.testIud.isEmpty() && listResult.size == 1) {
+                    result.saveTest(answer)
+                } else if (listResult.size > 1) {
+
+                    val newResult = result.testIud + "::" + answer
+                    result.saveTest(newResult)
+                } else {
+                    val newResult = result.testIud + "," + answer
+                    result.saveTest(newResult)
+                }
 
             }
 
         }
-    }
 
+
+    }
 
 }

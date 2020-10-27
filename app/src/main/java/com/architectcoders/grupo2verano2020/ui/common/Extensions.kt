@@ -3,6 +3,7 @@ package com.architectcoders.grupo2verano2020.ui.common
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -77,3 +78,10 @@ inline fun <VH : RecyclerView.ViewHolder, T> RecyclerView.Adapter<VH>.basicDiffU
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): View =
     LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
+
+
+fun View.logD(message: String) {
+    val tag=javaClass.simpleName
+    Log.d(tag,"out: "+message)
+
+}

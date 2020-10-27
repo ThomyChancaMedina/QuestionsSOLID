@@ -1,11 +1,9 @@
 package com.architectcoders.grupo2verano2020.data.database
 
 
-
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.architectcoders.domain.Answer
-
 
 
 @Entity
