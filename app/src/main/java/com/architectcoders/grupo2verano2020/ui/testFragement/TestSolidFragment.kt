@@ -1,31 +1,31 @@
 package com.architectcoders.grupo2verano2020.ui.testFragement
 
+
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.architectcoders.grupo2verano2020.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.architectcoders.grupo2verano2020.data.TestQuestionRepository
+import com.architectcoders.grupo2verano2020.data.model.TestQuestion
 import com.architectcoders.grupo2verano2020.databinding.FragmentTestSolidBinding
 import com.architectcoders.grupo2verano2020.ui.common.app
+import com.architectcoders.grupo2verano2020.ui.common.getViewModelF
 
 
-class TestSolidFragment : Fragment() ,TestSolidAdapter.Interaction{
-
+class TestSolidFragment : Fragment(), TestSolidAdapter.Interaction {
 
     private lateinit var binding: FragmentTestSolidBinding
 
-    val TAG = TestSolidFragment::class.java.simpleName
-
-    var listAnswer: ArrayList<String> = arrayListOf()
 
     lateinit var navController: NavController
+    private lateinit var viewModel: TestSolidViewModel
 
-
-    private lateinit var adapter: TestSolidAdapter
+    private lateinit var adapterQuestion: TestSolidAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,54 +33,40 @@ class TestSolidFragment : Fragment() ,TestSolidAdapter.Interaction{
     ): View? {
         binding = FragmentTestSolidBinding.inflate(inflater, container, false)
         return binding.root
-//        inflater.inflate(R.layout.fragment_test_solid, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel = getViewModelF { TestSolidViewModel(TestQuestionRepository(app)) }
         navController = view.findNavController()
 
-        adapter = TestSolidAdapter(this@TestSolidFragment,app).apply {
-            setHasStableIds(true)
+        binding.recycler.apply {
+            layoutManager = LinearLayoutManager(app)
+            adapterQuestion = TestSolidAdapter(this@TestSolidFragment).apply {
+                setHasStableIds(true)
+            }
+            adapter = adapterQuestion
         }
 
-        binding.recycler.adapter = adapter
-
-        val questions = resources.getStringArray(R.array.questionArray)
-
-        adapter.questions = questions.toList()
+        viewModel.questions.observe(viewLifecycleOwner, Observer(::updateUi))
+        viewModel.getQuestionFromDb()
 
         binding.bntCheck.setOnClickListener {
 
-            if (app.resultTest.testIud.contains(",")) {
-                val listResult = app.resultTest.testIud.split(",")
 
-                for (i in questions.toList().indices) {
-                    listAnswer.add(i,"null")
-                }
-
-                listResult.forEach {
-
-                    if (it.contains("::")) {
-                        val last = it.split("::").last()
-                        val answer = last.split("=")
-                        listAnswer[answer.last().toInt()]=last
-
-                    } else {
-                        val answer = it.split("=")
-                        listAnswer[answer.last().toInt()]=it
-
-                    }
-
-                }
-                Log.d(TAG, "onViewCreated: thomy " +listAnswer.toString())
-            }
         }
+    }
+
+    private fun updateUi(list: List<TestQuestion>?) {
+
+        adapterQuestion.questions = list!!
     }
 
     override fun onItemSelected(position: Int, selection: Int) {
 
-
+        viewModel.updateAnswer(position, selection)
+        adapterQuestion.notifyDataSetChanged()
     }
+
+
 }

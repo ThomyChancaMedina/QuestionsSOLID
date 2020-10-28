@@ -1,6 +1,7 @@
 package com.architectcoders.grupo2verano2020.ui.common
 
 import android.app.Activity
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -8,8 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
@@ -17,6 +21,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 import com.architectcoders.grupo2verano2020.App
+import com.architectcoders.grupo2verano2020.R
 import kotlin.properties.Delegates
 
 
@@ -39,6 +44,9 @@ inline fun <reified T : ViewModel> Fragment.getViewModelF(crossinline factory: (
     return ViewModelProvider(this, vmFactory).get()
 }
 
+fun Application.listQuestion():List<String>{
+    return  resources.getStringArray(R.array.questionArray).toList()
+}
 
 val Context.app: App
     get() = applicationContext as App
@@ -84,4 +92,8 @@ fun View.logD(message: String) {
     val tag=javaClass.simpleName
     Log.d(tag,"out: "+message)
 
+}
+
+fun <T> MutableLiveData<T>.notifyObserver() {
+    this.value = this.value
 }
