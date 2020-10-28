@@ -10,8 +10,7 @@ import com.architectcoders.grupo2verano2020.ui.common.basicDiffUtil
 import com.architectcoders.grupo2verano2020.ui.common.inflate
 import kotlinx.android.synthetic.main.view_question.view.*
 
-class TestSolidAdapter(private val interaction: Interaction? = null, val app: App) :
-    RecyclerView.Adapter<TestSolidAdapter.ViewHolder>() {
+class TestSolidAdapter(val app: App) : RecyclerView.Adapter<TestSolidAdapter.ViewHolder>() {
 
 
     var questions: List<String> by basicDiffUtil(
@@ -21,7 +20,7 @@ class TestSolidAdapter(private val interaction: Interaction? = null, val app: Ap
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = parent.inflate(R.layout.view_question, false)
-        return ViewHolder(view, interaction, app)
+        return ViewHolder(view, app)
     }
 
     override fun getItemCount(): Int = questions.size
@@ -34,8 +33,7 @@ class TestSolidAdapter(private val interaction: Interaction? = null, val app: Ap
     }
 
 
-    class ViewHolder(view: View, private val interaction: Interaction?, app: App) :
-        RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, app: App) : RecyclerView.ViewHolder(view) {
         private val result = app.resultTest
         private val listResult: ArrayList<String> = arrayListOf()
 
@@ -43,18 +41,7 @@ class TestSolidAdapter(private val interaction: Interaction? = null, val app: Ap
 
             itemView.text_question.text = question
 //            itemView.rdGroup.check(position)
-            itemView.rdGroup.clearCheck()
-
-            if (interaction != null) {
-                itemView.check_yes.setOnClickListener {
-                    interaction.onItemSelected(adapterPosition, 1)
-                }
-                itemView.check_no.setOnClickListener {
-                    interaction.onItemSelected(adapterPosition, 2)
-                }
-            }
-
-
+            itemView.rdGroup.clearCheck ()
             itemView.rdGroup.setOnCheckedChangeListener { _, checkedId ->
 
 //                itemView.check_yes.isChecked=true
@@ -84,7 +71,4 @@ class TestSolidAdapter(private val interaction: Interaction? = null, val app: Ap
 
     }
 
-    interface Interaction {
-        fun onItemSelected(position: Int, selection: Int)
-    }
 }

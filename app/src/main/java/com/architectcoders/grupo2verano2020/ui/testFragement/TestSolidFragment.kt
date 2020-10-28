@@ -13,7 +13,7 @@ import com.architectcoders.grupo2verano2020.databinding.FragmentTestSolidBinding
 import com.architectcoders.grupo2verano2020.ui.common.app
 
 
-class TestSolidFragment : Fragment() ,TestSolidAdapter.Interaction{
+class TestSolidFragment : Fragment() {
 
 
     private lateinit var binding: FragmentTestSolidBinding
@@ -41,9 +41,7 @@ class TestSolidFragment : Fragment() ,TestSolidAdapter.Interaction{
 
         navController = view.findNavController()
 
-        adapter = TestSolidAdapter(this@TestSolidFragment,app).apply {
-            setHasStableIds(true)
-        }
+        adapter = TestSolidAdapter(app)
 
         binding.recycler.adapter = adapter
 
@@ -77,10 +75,5 @@ class TestSolidFragment : Fragment() ,TestSolidAdapter.Interaction{
                 Log.d(TAG, "onViewCreated: thomy " +listAnswer.toString())
             }
         }
-    }
-
-    override fun onItemSelected(position: Int, selection: Int) {
-
-
     }
 }
