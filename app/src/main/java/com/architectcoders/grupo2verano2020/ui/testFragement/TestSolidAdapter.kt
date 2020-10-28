@@ -53,28 +53,28 @@ class TestSolidAdapter(private val interaction: Interaction? = null,val app: App
             }
 
 
-//            itemView.rdGroup.setOnCheckedChangeListener { _, checkedId ->
-//
-////                itemView.check_yes.isChecked=true
-//
-//
-//                val check: String = if (checkedId == 2131296357) "si" else "no"
-//
-//                val answer = check + "=" + position
-//                listResult.add(check)
-//
-//                if (result.testIud.isEmpty() && listResult.size == 1) {
-//                    result.saveTest(answer)
-//                } else if (listResult.size > 1) {
-//
-//                    val newResult = result.testIud + "::" + answer
-//                    result.saveTest(newResult)
-//                } else {
-//                    val newResult = result.testIud + "," + answer
-//                    result.saveTest(newResult)
-//                }
-//
-//            }
+            itemView.radioGroup.setOnCheckedChangeListener { _, checkedId ->
+
+//                itemView.check_yes.isChecked=true
+
+
+                val check: String = if (checkedId == 2131296357) "si" else "no"
+
+                val answer = check + "=" + position
+                listResult.add(check)
+
+                if (result.testIud.isEmpty() && listResult.size == 1) {
+                    result.saveTest(answer)
+                } else if (listResult.size > 1) {
+
+                    val newResult = result.testIud + "::" + answer
+                    result.saveTest(newResult)
+                } else {
+                    val newResult = result.testIud + "," + answer
+                    result.saveTest(newResult)
+                }
+
+            }
 
 
         }
