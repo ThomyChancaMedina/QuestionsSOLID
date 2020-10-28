@@ -10,7 +10,8 @@ import com.architectcoders.grupo2verano2020.ui.common.basicDiffUtil
 import com.architectcoders.grupo2verano2020.ui.common.inflate
 import kotlinx.android.synthetic.main.view_question.view.*
 
-class TestSolidAdapter(private val interaction: Interaction? = null,val app: App) : RecyclerView.Adapter<TestSolidAdapter.ViewHolder>() {
+class TestSolidAdapter(private val interaction: Interaction? = null, val app: App) :
+    RecyclerView.Adapter<TestSolidAdapter.ViewHolder>() {
 
 
     var questions: List<String> by basicDiffUtil(
@@ -33,7 +34,8 @@ class TestSolidAdapter(private val interaction: Interaction? = null,val app: App
     }
 
 
-    class ViewHolder(view: View, private val interaction: Interaction? ,app: App) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, private val interaction: Interaction?, app: App) :
+        RecyclerView.ViewHolder(view) {
         private val result = app.resultTest
         private val listResult: ArrayList<String> = arrayListOf()
 
@@ -41,46 +43,47 @@ class TestSolidAdapter(private val interaction: Interaction? = null,val app: App
 
             itemView.text_question.text = question
 //            itemView.rdGroup.check(position)
-            itemView.radioGroup.clearCheck ()
+            itemView.rdGroup.clearCheck()
 
-            if(interaction!=null){
+            if (interaction != null) {
                 itemView.check_yes.setOnClickListener {
-                    interaction.onItemSelected(adapterPosition,1)
+                    interaction.onItemSelected(adapterPosition, 1)
                 }
                 itemView.check_no.setOnClickListener {
-                    interaction.onItemSelected(adapterPosition,2)
+                    interaction.onItemSelected(adapterPosition, 2)
                 }
             }
 
 
-//            itemView.rdGroup.setOnCheckedChangeListener { _, checkedId ->
-//
-////                itemView.check_yes.isChecked=true
-//
-//
-//                val check: String = if (checkedId == 2131296357) "si" else "no"
-//
-//                val answer = check + "=" + position
-//                listResult.add(check)
-//
-//                if (result.testIud.isEmpty() && listResult.size == 1) {
-//                    result.saveTest(answer)
-//                } else if (listResult.size > 1) {
-//
-//                    val newResult = result.testIud + "::" + answer
-//                    result.saveTest(newResult)
-//                } else {
-//                    val newResult = result.testIud + "," + answer
-//                    result.saveTest(newResult)
-//                }
-//
-//            }
+            itemView.rdGroup.setOnCheckedChangeListener { _, checkedId ->
+
+//                itemView.check_yes.isChecked=true
+
+
+                val check: String = if (checkedId == 2131296357) "si" else "no"
+
+                val answer = check + "=" + position
+                listResult.add(check)
+
+                if (result.testIud.isEmpty() && listResult.size == 1) {
+                    result.saveTest(answer)
+                } else if (listResult.size > 1) {
+
+                    val newResult = result.testIud + "::" + answer
+                    result.saveTest(newResult)
+                } else {
+                    val newResult = result.testIud + "," + answer
+                    result.saveTest(newResult)
+                }
+
+            }
 
 
         }
 
 
     }
+
     interface Interaction {
         fun onItemSelected(position: Int, selection: Int)
     }

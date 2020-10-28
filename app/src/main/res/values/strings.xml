@@ -30,4 +30,6 @@
 
     </string-array>
     <string name="btn_confirmation">Confirmar</string>
+    <string name="si">si</string>
+    <string name="no">no</string>
 </resources>
