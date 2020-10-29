@@ -18,7 +18,8 @@ class QuestionProviderImpl(val app: App) : QuestionProvider {
             TestQuestion(
                 idx,
                 value,
-                0
+                -1,
+                ""
             )
         }
     }

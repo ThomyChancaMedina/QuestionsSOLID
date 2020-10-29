@@ -1,4 +1,4 @@
-package com.architectcoders.grupo2verano2020.ui.main
+package com.architectcoders.grupo2verano2020.ui.testResult
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 import com.architectcoders.usecases.GetQuestions
 
-class MainViewModel(private val getQuestions: GetQuestions) : ScopedViewModel() {
+class FragmentsViewModel(private val getQuestions: GetQuestions) : ScopedViewModel() {
 
 
     private val _question = MutableLiveData<UiModel>()

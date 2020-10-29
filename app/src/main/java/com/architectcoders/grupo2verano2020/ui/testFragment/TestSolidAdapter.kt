@@ -1,4 +1,4 @@
-package com.architectcoders.grupo2verano2020.ui.testFragement
+package com.architectcoders.grupo2verano2020.ui.testFragment
 
 
 import android.view.View
@@ -50,28 +50,28 @@ class TestSolidAdapter(private val interaction: Interaction? = null) :
 
             if (interaction != null) {
                 itemView.check_yes.setOnClickListener {
-                    interaction.onItemSelected(adapterPosition, 1)
+                    interaction.onItemSelected(adapterPosition, "yes")
                 }
                 itemView.check_no.setOnClickListener {
-                    interaction.onItemSelected(adapterPosition, 2)
+                    interaction.onItemSelected(adapterPosition, "no")
                 }
             }
 
         }
 
-        private fun setRadios(answer: Int) {
+        private fun setRadios(answer: String) {
             itemView.rdGroup.clearCheck()
 
-            if (answer == 0) return
+            if (answer == "") return
             when (answer) {
-                1 -> itemView.check_yes.isChecked = true
-                2 -> itemView.check_no.isChecked = true
+                "yes" -> itemView.check_yes.isChecked = true
+                "no" -> itemView.check_no.isChecked = true
             }
         }
     }
 
     interface Interaction {
-        fun onItemSelected(position: Int, selection: Int)
+        fun onItemSelected(position: Int, selection: String)
     }
 
 }

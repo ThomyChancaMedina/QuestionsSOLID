@@ -1,4 +1,4 @@
-package com.architectcoders.grupo2verano2020.ui.testFragement
+package com.architectcoders.grupo2verano2020.ui.testFragment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,15 +23,26 @@ class TestSolidViewModel(
         }
     }
 
-    fun updateAnswer(position: Int, selection: Int) {
+    fun updateAnswer(position: Int, selection: String) {
         val question = questions.value?.get(position) ?: return
 
         question.answer = selection
         _questions.notifyObserver()
+
     }
 
     init {
         initScope()
+    }
+    fun calculateResult(): List<String> {
+        var result:List<String> = listOf()
+
+        questions.value?.forEach { question ->
+           result = result+question.answer
+
+        }
+
+        return result
     }
 
 

@@ -6,19 +6,83 @@
     app:startDestination="@id/testSolid">
     <fragment
         android:id="@+id/testSolid"
-        android:name="com.architectcoders.grupo2verano2020.ui.testFragement.TestSolidFragment"
+        android:name="com.architectcoders.grupo2verano2020.ui.testFragment.TestSolidFragment"
         android:label="fragment_test_solid"
         tools:layout="@layout/fragment_test_solid">
+        <argument
+            android:name="id"
+            android:defaultValue="-1"
+            app:argType="integer" />
         <action
-            android:id="@+id/action_testFragment"
-            app:destination="@+id/testFragment" />
+            android:id="@+id/action_testFragment_to_firthFragment"
+            app:destination="@+id/firthFragment" />
+
     </fragment>
 
     <fragment
-        android:id="@+id/testFragment"
-        android:name="com.architectcoders.grupo2verano2020.ui.testFragement.ResultTestFragment"
-        android:label="result_test"
+        android:id="@+id/firthFragment"
+        android:name="com.architectcoders.grupo2verano2020.ui.testResult.FirthQuestionFragment"
+        android:label="firth_question"
         tools:layout="@layout/fragment_result_test">
+        <argument
+            android:name="id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_firthFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.architectcoders.grupo2verano2020.ui.testResult.SecondQuestionFragment"
+        android:label="second_question"
+        tools:layout="@layout/fragment_second_question">
+        <argument
+            android:name="id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_secondFragment_to_thirdFragment"
+            app:destination="@id/thirdFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.architectcoders.grupo2verano2020.ui.testResult.ThirdQuestionFragment"
+        android:label="third_question"
+        tools:layout="@layout/fragment_third_question">
+        <argument
+            android:name="id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_thirdFragment_to_quarterFragment"
+            app:destination="@id/quarterFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/quarterFragment"
+        android:name="com.architectcoders.grupo2verano2020.ui.testResult.QuarterQuestionFragment"
+        android:label="quarter_question"
+        tools:layout="@layout/fragment_quarter_question">
+        <argument
+            android:name="id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_quarterFragment_to_fifthFragment"
+            app:destination="@id/fifthFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fifthFragment"
+        android:name="com.architectcoders.grupo2verano2020.ui.testResult.FifthQuestionFragment"
+        android:label="fifth_question"
+        tools:layout="@layout/fragment_fifth_question">
         <argument
             android:name="id"
             android:defaultValue="-1"
