@@ -1,0 +1,22 @@
+package com.architectcoders.grupo2verano2020.ui.testResult
+
+import com.architectcoders.data.repository.QuestionRepository
+import com.architectcoders.usecases.GetQuestions
+import dagger.Module
+import dagger.Provides
+import dagger.Subcomponent
+
+@Module
+class QuestionModule{
+
+    @Provides
+    fun questionViewModelProvider(getQuestions: GetQuestions)=QuestionViewModel(getQuestions)
+
+    @Provides
+    fun getQuestionProvider(questionRepository: QuestionRepository)=GetQuestions(questionRepository)
+
+}
+@Subcomponent(modules = [(QuestionModule::class)])
+interface QuestionFragmentComponent{
+    val questionViewModel:QuestionViewModel
+}

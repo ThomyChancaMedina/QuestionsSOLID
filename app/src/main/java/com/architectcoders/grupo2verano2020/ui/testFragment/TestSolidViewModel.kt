@@ -2,24 +2,28 @@ package com.architectcoders.grupo2verano2020.ui.testFragment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.architectcoders.grupo2verano2020.data.TestQuestionRepository
-import com.architectcoders.grupo2verano2020.data.model.TestQuestion
+import com.architectcoders.domain.test.TestQuestion
+import com.architectcoders.grupo2verano2020.ui.common.Event
 import com.architectcoders.grupo2verano2020.ui.common.ScopedViewModel
 import com.architectcoders.grupo2verano2020.ui.common.notifyObserver
+import com.architectcoders.usecases.GetTestQuestion
 import kotlinx.coroutines.launch
 
 class TestSolidViewModel(
-    private val questionRepository: TestQuestionRepository
+    private val getTestQuestion: GetTestQuestion
 ) : ScopedViewModel() {
 
     private val _questions = MutableLiveData<List<TestQuestion>>()
     val questions: LiveData<List<TestQuestion>>
         get() = _questions
 
+    private val _model=MutableLiveData<Event<Unit>>()
+    val model:LiveData<Event<Unit>>
+    get() = _model
 
     fun getQuestionFromDb() {
         launch {
-            _questions.value = questionRepository.getAllQuestionTest()
+            _questions.value = getTestQuestion.invoke()
         }
     }
 
@@ -33,6 +37,11 @@ class TestSolidViewModel(
 
     init {
         initScope()
+        refresh()
+    }
+
+    private fun refresh() {
+        _model.value = Event(Unit)
     }
     fun calculateResult(): List<String> {
         var result:List<String> = listOf()

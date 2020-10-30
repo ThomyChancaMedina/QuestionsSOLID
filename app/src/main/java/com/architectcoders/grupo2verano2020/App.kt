@@ -1,27 +1,20 @@
 package com.architectcoders.grupo2verano2020
 
 import android.app.Application
-import androidx.room.Room
-import com.architectcoders.grupo2verano2020.data.database.QuestionDatabase
-import com.architectcoders.grupo2verano2020.data.database.storage.SharedPreferencesStorage
-import com.architectcoders.grupo2verano2020.data.provider.ResultTest
+import com.architectcoders.grupo2verano2020.data.di.DaggerProjectComponent
+import com.architectcoders.grupo2verano2020.data.di.ProjectComponent
 
-class App : Application() {
 
-    lateinit var db: QuestionDatabase
+open class App : Application() {
+
+    lateinit var component: ProjectComponent
         private set
-
-    val resultTest by lazy {
-        ResultTest(SharedPreferencesStorage(this))
-    }
 
     override fun onCreate() {
         super.onCreate()
-        db= Room.databaseBuilder(
-            this,
-            QuestionDatabase::class.java,
-            "question-db"
-        ).build()
-    }
 
+        component= initTestComponent()
+
+    }
+    open fun initTestComponent()=DaggerProjectComponent.factory().create(this)
 }

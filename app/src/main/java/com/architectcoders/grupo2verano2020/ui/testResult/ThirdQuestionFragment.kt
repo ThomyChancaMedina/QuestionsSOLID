@@ -11,18 +11,20 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.architectcoders.data.repository.QuestionRepository
 import com.architectcoders.grupo2verano2020.R
-import com.architectcoders.grupo2verano2020.data.database.RoomDataSource
+import com.architectcoders.grupo2verano2020.data.database.question.RoomDataSource
 import com.architectcoders.grupo2verano2020.data.server.QuestionDbDataSource
 import com.architectcoders.grupo2verano2020.ui.common.app
 import com.architectcoders.grupo2verano2020.ui.common.getViewModelF
-import com.architectcoders.grupo2verano2020.ui.testFragment.TestSolidFragmentArgs
 import com.architectcoders.usecases.GetQuestions
 import kotlinx.android.synthetic.main.fragment_result_test.*
 
 
 class ThirdQuestionFragment : Fragment() {
 
-    private lateinit var viewModel: FragmentsViewModel
+    private lateinit var component:QuestionFragmentComponent
+
+    private val viewModel:QuestionViewModel by lazy { getViewModelF { component.questionViewModel } }
+
 
     lateinit var navController: NavController
 
@@ -39,13 +41,9 @@ class ThirdQuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
-        viewModel=getViewModelF {
-            FragmentsViewModel(
-                GetQuestions(
-                    QuestionRepository(RoomDataSource(app.db), QuestionDbDataSource())
-                )
-            )
-        }
+
+        component= app.component.plus(QuestionModule())
+
         viewModel.question.observe(viewLifecycleOwner, Observer (::getData))
         viewModel.onGetAllQuestions()
 
@@ -65,10 +63,10 @@ class ThirdQuestionFragment : Fragment() {
 
     }
 
-    private fun getData(uiModel: FragmentsViewModel.UiModel?) {
+    private fun getData(uiModel: QuestionViewModel.UiModel?) {
 
         when(uiModel){
-            is FragmentsViewModel.UiModel.Content->{
+            is QuestionViewModel.UiModel.Content->{
                 question_1.text=uiModel.question[2].question
                 put_positive.text=uiModel.question[2].answers[0].answer
                 put_negative.text=uiModel.question[2].answers[1].answer

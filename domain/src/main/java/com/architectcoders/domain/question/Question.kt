@@ -1,4 +1,4 @@
-package com.architectcoders.domain
+package com.architectcoders.domain.question
 
 data class Question(
     val id: String,

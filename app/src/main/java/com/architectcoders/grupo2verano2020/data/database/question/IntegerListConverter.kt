@@ -1,8 +1,7 @@
-package com.architectcoders.grupo2verano2020.data.database
+package com.architectcoders.grupo2verano2020.data.database.question
 
 import androidx.room.TypeConverter
-import com.architectcoders.domain.Answer
-
+import com.architectcoders.domain.question.Answer
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

@@ -1,7 +1,5 @@
 package com.architectcoders.grupo2verano2020.ui.testResult
 
-import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,19 +12,19 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.architectcoders.data.repository.QuestionRepository
 import com.architectcoders.grupo2verano2020.R
-import com.architectcoders.grupo2verano2020.data.database.RoomDataSource
+import com.architectcoders.grupo2verano2020.data.database.question.RoomDataSource
 import com.architectcoders.grupo2verano2020.data.server.QuestionDbDataSource
 import com.architectcoders.grupo2verano2020.ui.common.app
 import com.architectcoders.grupo2verano2020.ui.common.getViewModelF
-import com.architectcoders.grupo2verano2020.ui.testFragment.TestSolidFragmentArgs
 import com.architectcoders.usecases.GetQuestions
 import kotlinx.android.synthetic.main.fragment_result_test.*
-import java.io.InputStream
 
 
 class FirthQuestionFragment : Fragment() {
 
-    private lateinit var viewModel: FragmentsViewModel
+    private lateinit var component:QuestionFragmentComponent
+
+    private val viewModel:QuestionViewModel by lazy { getViewModelF { component.questionViewModel } }
 
     lateinit var navController: NavController
 
@@ -44,13 +42,9 @@ class FirthQuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
-        viewModel = getViewModelF {
-            FragmentsViewModel(
-                GetQuestions(
-                    QuestionRepository(RoomDataSource(app.db), QuestionDbDataSource())
-                )
-            )
-        }
+
+        component= app.component.plus(QuestionModule())
+
         viewModel.question.observe(viewLifecycleOwner, Observer(::getData))
         viewModel.onGetAllQuestions()
 
@@ -71,10 +65,10 @@ class FirthQuestionFragment : Fragment() {
 
     }
 
-    private fun getData(uiModel: FragmentsViewModel.UiModel?) {
+    private fun getData(uiModel: QuestionViewModel.UiModel?) {
 
         when (uiModel) {
-            is FragmentsViewModel.UiModel.Content -> {
+            is QuestionViewModel.UiModel.Content -> {
                 Log.d("TAG", "updateUi: thomy:: " + uiModel.question[0].question)
                 question_1.text = uiModel.question[0].question
                 put_positive.text = uiModel.question[0].answers[0].answer

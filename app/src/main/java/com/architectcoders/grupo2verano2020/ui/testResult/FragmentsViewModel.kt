@@ -2,13 +2,13 @@ package com.architectcoders.grupo2verano2020.ui.testResult
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.architectcoders.domain.Question
+import com.architectcoders.domain.question.Question
 import com.architectcoders.grupo2verano2020.ui.common.ScopedViewModel
 import kotlinx.coroutines.launch
 
 import com.architectcoders.usecases.GetQuestions
 
-class FragmentsViewModel(private val getQuestions: GetQuestions) : ScopedViewModel() {
+class QuestionViewModel(private val getQuestions: GetQuestions) : ScopedViewModel() {
 
 
     private val _question = MutableLiveData<UiModel>()
@@ -20,8 +20,6 @@ class FragmentsViewModel(private val getQuestions: GetQuestions) : ScopedViewMod
 
     sealed class UiModel {
         class Content(val question: List<Question>) : UiModel()
-
-
     }
 
     init {

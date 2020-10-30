@@ -1,7 +1,6 @@
-package com.architectcoders.grupo2verano2020.data.server
+package com.architectcoders.grupo2verano2020.data.server.model
 
 import android.os.Parcelable
-import androidx.room.Relation
 import kotlinx.android.parcel.Parcelize
 
 

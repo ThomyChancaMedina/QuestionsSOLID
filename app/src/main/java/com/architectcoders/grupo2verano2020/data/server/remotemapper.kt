@@ -1,10 +1,10 @@
 package com.architectcoders.grupo2verano2020.data.server
 
-import com.architectcoders.grupo2verano2020.data.server.Questions as ServerQuestion
-import com.architectcoders.domain.Question
+import com.architectcoders.grupo2verano2020.data.server.model.Questions as ServerQuestion
+import com.architectcoders.domain.question.Question
 
-import com.architectcoders.domain.Answer
-import com.architectcoders.grupo2verano2020.data.server.Answer as ServerAnswer
+import com.architectcoders.domain.question.Answer
+import com.architectcoders.grupo2verano2020.data.server.model.Answer as ServerAnswer
 
 fun ServerQuestion.toDomainQuestionAnswer(): Question =
     Question(

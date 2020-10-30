@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-object TheQuestionDb {
+class TheQuestionDb(baseUrl:String) {
 
     private val okHttpClient=HttpLoggingInterceptor().run {
         level= HttpLoggingInterceptor.Level.BODY
@@ -16,7 +16,7 @@ object TheQuestionDb {
     }
 
     val retrofit: TheQuestionDbService = Retrofit.Builder()
-        .baseUrl("https://architectcoders.firebaseio.com/")
+        .baseUrl(baseUrl)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         // Moshi maps JSON to classes

@@ -1,6 +1,7 @@
 package com.architectcoders.grupo2verano2020.data.server
 
 
+import com.architectcoders.grupo2verano2020.data.server.model.Questions
 import retrofit2.http.GET
 
 interface TheQuestionDbService {

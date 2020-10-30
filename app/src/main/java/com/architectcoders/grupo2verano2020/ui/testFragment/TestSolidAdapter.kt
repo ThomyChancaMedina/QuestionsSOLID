@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.architectcoders.grupo2verano2020.R
-import com.architectcoders.grupo2verano2020.data.model.TestQuestion
+import com.architectcoders.domain.test.TestQuestion
 import com.architectcoders.grupo2verano2020.ui.common.basicDiffUtil
 import com.architectcoders.grupo2verano2020.ui.common.inflate
 import kotlinx.android.synthetic.main.view_question.view.*

@@ -1,12 +1,13 @@
-package com.architectcoders.grupo2verano2020.data.database
+package com.architectcoders.grupo2verano2020.data.database.question
 
 
 import com.architectcoders.data.source.LocalDataSource
-import com.architectcoders.domain.Question
+import com.architectcoders.domain.question.Question
+import com.architectcoders.grupo2verano2020.data.database.ProjectDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class RoomDataSource (db:QuestionDatabase) : LocalDataSource {
+class RoomDataSource (db: ProjectDatabase) : LocalDataSource {
 
     private val questionDao=db.questionDao()
 
