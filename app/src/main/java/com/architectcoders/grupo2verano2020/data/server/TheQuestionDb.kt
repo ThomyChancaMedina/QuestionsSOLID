@@ -9,7 +9,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class TheQuestionDb(baseUrl:String) {
 
-    private val okHttpClient=HttpLoggingInterceptor().run {
+    val okHttpClient=HttpLoggingInterceptor().run {
         level= HttpLoggingInterceptor.Level.BODY
         OkHttpClient.Builder().addInterceptor(this).build()
 

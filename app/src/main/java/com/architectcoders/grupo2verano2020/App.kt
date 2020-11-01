@@ -13,8 +13,9 @@ open class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        component= initTestComponent()
+        component = initTestComponent()
 
     }
-    open fun initTestComponent()=DaggerProjectComponent.factory().create(this)
+
+    open fun initTestComponent() = DaggerProjectComponent.factory().create(this)
 }
