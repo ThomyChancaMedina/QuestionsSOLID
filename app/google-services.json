@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "794014198797",
+    "firebase_url": "https://architectcoders.firebaseio.com",
+    "project_id": "architectcoders",
+    "storage_bucket": "architectcoders.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794014198797:android:54c8286edfddd847c57944",
+        "android_client_info": {
+          "package_name": "com.architectcoders.grupo2verano2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794014198797-ueb11sfmgmoa88l6bso37dpthak868m6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbJmdmIDdrU3DCiuWsCogq8Z2vdNchwng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794014198797-ueb11sfmgmoa88l6bso37dpthak868m6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
