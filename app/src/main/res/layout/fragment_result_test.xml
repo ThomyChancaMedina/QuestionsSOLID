@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.testFragement.ResultTestFragment">
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
-        android:id="@+id/result"
+        android:id="@+id/question_1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="100dp"
+        android:text="Choose a feature to test"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        style="@style/TextAppearance.AppCompat.Title"/>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/put_positive"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:text="Go to view" />
+
+    <Button
+        android:id="@+id/put_negative"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:text="Go to database" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

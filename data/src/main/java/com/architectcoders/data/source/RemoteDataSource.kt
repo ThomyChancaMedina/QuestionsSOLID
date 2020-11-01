@@ -1,6 +1,6 @@
 package com.architectcoders.data.source
 
-import com.architectcoders.domain.Question
+import com.architectcoders.domain.question.Question
 
 
 interface RemoteDataSource {

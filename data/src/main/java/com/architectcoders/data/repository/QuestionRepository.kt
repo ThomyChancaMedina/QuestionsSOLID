@@ -2,7 +2,7 @@ package com.architectcoders.data.repository
 
 import com.architectcoders.data.source.LocalDataSource
 import com.architectcoders.data.source.RemoteDataSource
-import com.architectcoders.domain.Question
+import com.architectcoders.domain.question.Question
 
 class QuestionRepository(
     private val localDataSource: LocalDataSource,
@@ -17,8 +17,8 @@ class QuestionRepository(
         return localDataSource.getQuestions()
     }
 
-    suspend fun findById(id:String): Question=localDataSource.findById(id)
+    suspend fun findById(id:String): Question =localDataSource.findById(id)
 
-    suspend fun update(question:Question)=localDataSource.update(question)
+    suspend fun update(question: Question)=localDataSource.update(question)
 
 }
