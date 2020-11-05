@@ -22,7 +22,7 @@ fun listQuestion(): List<String> {
         "14. La composición es aquella que tiene  instancia de una clase que a su ves contiene instancia de otras clases implementando  funciones necesarias",
         "15. En la composición, delegamos responsabilidades en colaboradores designados para ello",
         "16. Las herencias se suelen adaptarse a cambias, evitando así el llamado “Spaguetti code”",
-        "17. Se dice que al usar composiciones podemos elegir si vamos a tener un 0, 1 o N elementos con los que interactuar al mismo tipo ",
+        "17. Se dice que al usar composiciones podemos elegir si vamos a tener un 0, 1 o N elementos con los que interactuar al mismo tipo",
     )
 }
 

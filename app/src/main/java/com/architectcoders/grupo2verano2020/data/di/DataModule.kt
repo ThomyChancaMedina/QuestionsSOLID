@@ -13,15 +13,17 @@ import dagger.Provides
 class DataModule {
 
     @Provides
+    fun testRepositoryProvider(
+        testLocalSource: TestLocalSource,
+        testDataSource: TestDataSource
+    ) = TestRepository(testLocalSource, testDataSource)
+
+    @Provides
     fun questionRepositoryProvider(
         localDataSource: LocalDataSource,
         remoteDataSource: RemoteDataSource,
     ) = QuestionRepository(localDataSource, remoteDataSource)
 
-    @Provides
-    fun testRepositoryProvider(
-        testLocalSource: TestLocalSource,
-        testDataSource: TestDataSource
-    ) = TestRepository(testLocalSource, testDataSource)
+
 
 }

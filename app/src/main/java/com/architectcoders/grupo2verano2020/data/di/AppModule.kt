@@ -22,24 +22,24 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun databaseProvider(app:Application)= Room.databaseBuilder(
+    fun databaseProvider(app: Application) = Room.databaseBuilder(
         app,
         ProjectDatabase::class.java,
         "question-db"
     ).build()
 
     @Provides
-    fun localQuestionSourceProvider(db: ProjectDatabase):LocalDataSource= RoomDataSource(db)
+    fun localQuestionSourceProvider(db: ProjectDatabase): LocalDataSource = RoomDataSource(db)
 
     @Provides
-    fun remoteDataSourceProvider(theQuestionDb: TheQuestionDb):RemoteDataSource=QuestionDbDataSource(theQuestionDb)
+    fun remoteDataSourceProvider(theQuestionDb: TheQuestionDb): RemoteDataSource =
+        QuestionDbDataSource(theQuestionDb)
 
     @Provides
-    fun localTestSourceProvider(db: ProjectDatabase):TestLocalSource=RoomTestDataSource(db)
+    fun localTestSourceProvider(db: ProjectDatabase): TestLocalSource = RoomTestDataSource(db)
 
     @Provides
     fun testDataSourceProvider(): TestDataSource = TestDbDataSource()
-
 
 
 }
