@@ -1,6 +1,5 @@
 package com.architectcoders.grupo2verano2020
 
-
 import com.architectcoders.data.testSource.TestDataSource
 import com.architectcoders.data.testSource.TestLocalSource
 import com.architectcoders.domain.test.TestQuestion
@@ -12,24 +11,26 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [
-    TestAppModule::class,
+@Component(
+    modules = [
+    TestUserAppModule::class,
     DataModule::class
-])
-interface TestProjectComponent : ProjectComponent {
+    ]
+)
+interface TestUserComponent : ProjectComponent {
 
     val testLocalSource: TestLocalSource
-    val testDataSource:TestDataSource
+    val testDataSource: TestDataSource
 
     @Component.Factory
     interface FactoryTest {
-        fun create(): TestProjectComponent
+        fun create(): TestUserComponent
     }
+
 }
 
-
 @Module
-class TestAppModule {
+class TestUserAppModule {
 
     @Provides
     @Singleton
@@ -37,34 +38,36 @@ class TestAppModule {
 
     @Provides
     @Singleton
-    fun testDataSourceProvider(): TestDataSource = FakeTestDataSource()
+    fun testTestDataSourceProvider(): TestDataSource = FakeTestDataSource()
 
 }
 
+
 class FakeTestLocalSource : TestLocalSource {
 
-    var testQuestionT: List<TestQuestion> = emptyList()
+    var testQuestion: List<TestQuestion> = emptyList()
 
-    override suspend fun isEmpty() = testQuestionT.isEmpty()
+    override suspend fun isEmpty() = testQuestion.isEmpty()
 
     override suspend fun saveTests(testQuestion: List<TestQuestion>) {
-        this.testQuestionT = testQuestion
+        this.testQuestion = testQuestion
     }
 
-    override suspend fun getTests(): List<TestQuestion> = testQuestionT
+    override suspend fun getTests(): List<TestQuestion> = testQuestion
 
-    override suspend fun findById(id: Int): TestQuestion = testQuestionT.first { it.uniqueId == id }
+    override suspend fun findById(id: Int): TestQuestion = testQuestion.first { it.uniqueId == id }
 
     override suspend fun update(testQuestion: TestQuestion) {
-        testQuestionT =
-            testQuestionT.filterNot { it.uniqueId == testQuestion.uniqueId } + testQuestion
+        this.testQuestion =
+            this.testQuestion.filterNot { it.uniqueId == testQuestion.uniqueId } + testQuestion
     }
 
 }
 
 class FakeTestDataSource : TestDataSource {
-    var tests = defaultFakeTest
-    override suspend fun getAllTest(): List<TestQuestion> = tests
+    var testQuestions = defaultFakeTest
+
+    override suspend fun getAllTest() = testQuestions
 
 }
 

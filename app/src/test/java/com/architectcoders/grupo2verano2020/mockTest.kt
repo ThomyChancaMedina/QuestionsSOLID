@@ -4,7 +4,8 @@ import com.architectcoders.domain.test.TestQuestion
 
 val mockedTest = TestQuestion(
     0,
-    "Text",
+    "Test",
     0,
-    "Result"
+    "answer",
+
 )
