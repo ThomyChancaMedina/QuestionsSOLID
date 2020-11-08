@@ -20,7 +20,17 @@ allprojects {
         google()
         jcenter()
     }
+    ext{
+        testLibs = [
+                junit        : 'junit:junit:4.13.1',
+                mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0",
+                mockitoInline: 'org.mockito:mockito-inline:3.5.13',
+//                koinTest     : 'org.koin:koin-test:2.1.1',
+//                testShared   : project(':testShared')
+        ]
+    }
 }
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

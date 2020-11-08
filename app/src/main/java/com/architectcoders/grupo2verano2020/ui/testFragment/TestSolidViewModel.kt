@@ -17,9 +17,26 @@ class TestSolidViewModel(
     val questions: LiveData<List<TestQuestion>>
         get() = _questions
 
-    private val _model=MutableLiveData<Event<Unit>>()
-    val model:LiveData<Event<Unit>>
-    get() = _model
+    private val _model = MutableLiveData<Event<Unit>>()
+    val model: LiveData<Event<Unit>>
+        get() = _model
+
+
+    private val _modelTet = MutableLiveData<UiModel>()
+    val modelTest: LiveData<UiModel>
+        get() = _modelTet
+
+    sealed class UiModel {
+        object Loading : UiModel()
+        data class Content(val question: List<TestQuestion>) : UiModel()
+
+    }
+
+
+    init {
+        initScope()
+        refresh()
+    }
 
     fun getQuestionFromDb() {
         launch {
@@ -35,19 +52,15 @@ class TestSolidViewModel(
 
     }
 
-    init {
-        initScope()
-        refresh()
-    }
-
     private fun refresh() {
         _model.value = Event(Unit)
     }
+
     fun calculateResult(): List<String> {
-        var result:List<String> = listOf()
+        var result: List<String> = listOf()
 
         questions.value?.forEach { question ->
-           result = result+question.answer
+            result = result + question.answer
 
         }
 
