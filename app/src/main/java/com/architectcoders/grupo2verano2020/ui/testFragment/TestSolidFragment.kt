@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.architectcoders.data.repository.TestRepository
 import com.architectcoders.grupo2verano2020.R
 import com.architectcoders.grupo2verano2020.data.database.Test.RoomTestDataSource
@@ -75,7 +76,8 @@ class TestSolidFragment : Fragment(), TestSolidAdapter.Interaction {
 
             val result = compareValues(answers.toList(), answerSummary)
 
-            val action=TestSolidFragmentDirections.actionTestFragmentToFirthFragment(result)
+
+            val action=TestSolidFragmentDirections.actionTestSolidToCardQuestionActivity(result)
             navController.navigate(action)
 
         }

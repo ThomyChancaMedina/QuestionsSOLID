@@ -55,7 +55,7 @@ dependencies {
     implementation(project(":usecases"))
 //    testImplementation testLibs.values()
 
-    implementation(fileTree("libs") { include(listOf("*.jar")) })
+//    implementation(fileTree("libs") { include(listOf("*.jar")) })
 
     androidTestImplementation("androidx.test:runner:1.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
@@ -132,5 +132,7 @@ dependencies {
     implementation("com.karumi:dexter:6.2.1")
     implementation("com.google.dagger:dagger:2.28.1")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
+    implementation ("com.github.ThomyChancaMedina:CountDownTime-master:1.0.1")
 
 }

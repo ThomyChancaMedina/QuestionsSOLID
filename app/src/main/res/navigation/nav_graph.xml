@@ -14,80 +14,20 @@
             android:defaultValue="-1"
             app:argType="integer" />
         <action
-            android:id="@+id/action_testFragment_to_firthFragment"
-            app:destination="@+id/firthFragment" />
+            android:id="@+id/action_testSolid_to_cardQuestionActivity"
+            app:destination="@id/cardQuestionActivity" />
 
     </fragment>
 
-    <fragment
-        android:id="@+id/firthFragment"
-        android:name="com.architectcoders.grupo2verano2020.ui.testResult.FirthQuestionFragment"
-        android:label="firth_question"
-        tools:layout="@layout/fragment_result_test">
+    <activity
+        android:id="@+id/cardQuestionActivity"
+        android:name="com.architectcoders.grupo2verano2020.ui.testResult.CardQuestionActivity"
+        android:label="CardQuestionActivity">
         <argument
             android:name="id"
             android:defaultValue="-1"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_firthFragment_to_secondFragment"
-            app:destination="@id/secondFragment" />
+    </activity>
 
-    </fragment>
-
-    <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.architectcoders.grupo2verano2020.ui.testResult.SecondQuestionFragment"
-        android:label="second_question"
-        tools:layout="@layout/fragment_second_question">
-        <argument
-            android:name="id"
-            android:defaultValue="-1"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_secondFragment_to_thirdFragment"
-            app:destination="@id/thirdFragment" />
-
-    </fragment>
-    <fragment
-        android:id="@+id/thirdFragment"
-        android:name="com.architectcoders.grupo2verano2020.ui.testResult.ThirdQuestionFragment"
-        android:label="third_question"
-        tools:layout="@layout/fragment_third_question">
-        <argument
-            android:name="id"
-            android:defaultValue="-1"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_thirdFragment_to_quarterFragment"
-            app:destination="@id/quarterFragment" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/quarterFragment"
-        android:name="com.architectcoders.grupo2verano2020.ui.testResult.QuarterQuestionFragment"
-        android:label="quarter_question"
-        tools:layout="@layout/fragment_quarter_question">
-        <argument
-            android:name="id"
-            android:defaultValue="-1"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_quarterFragment_to_fifthFragment"
-            app:destination="@id/fifthFragment" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/fifthFragment"
-        android:name="com.architectcoders.grupo2verano2020.ui.testResult.FifthQuestionFragment"
-        android:label="fifth_question"
-        tools:layout="@layout/fragment_fifth_question">
-        <argument
-            android:name="id"
-            android:defaultValue="-1"
-            app:argType="integer" />
-
-    </fragment>
 
 </navigation>

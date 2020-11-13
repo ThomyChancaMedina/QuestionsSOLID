@@ -17,6 +17,6 @@ class QuestionModule{
 
 }
 @Subcomponent(modules = [(QuestionModule::class)])
-interface QuestionFragmentComponent{
+interface QuestionComponent{
     val questionViewModel:QuestionViewModel
 }
