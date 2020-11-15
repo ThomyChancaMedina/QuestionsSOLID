@@ -34,10 +34,8 @@ class MainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_main, container, false)
 
-//        setupOrderFragment()
         return rootView
     }
 
@@ -50,9 +48,6 @@ class MainFragment : Fragment() {
 
         viewModel.question.observe(viewLifecycleOwner, Observer(::getData))
         viewModel.onGetAllQuestions()
-//        setupPager()
-
-
 
 
         clickListeners()
@@ -81,10 +76,6 @@ class MainFragment : Fragment() {
         }
     }
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
     private fun getData(uiModel: QuestionViewModel.UiModel?) {
 
         when (uiModel) {
@@ -92,9 +83,7 @@ class MainFragment : Fragment() {
             is QuestionViewModel.UiModel.Content -> {
 
                 setupPager(uiModel.question)
-//                adapterQuiz.questions = uiModel.question
 
-//                Log.d("TAG", "getData: thomy::: "+uiModel.question.size)
             }
         }
 
@@ -105,10 +94,6 @@ class MainFragment : Fragment() {
         rootView.apply {
             adapterQuiz= RecipeAdapter(app,question)
             pager.adapter = adapterQuiz
-
-//            adapterQuiz.questions=question
-
-
             if (motionTime != null) {
                 pager.addOnPageChangeListener(motionTime as ViewPager.OnPageChangeListener)
                 pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -124,7 +109,6 @@ class MainFragment : Fragment() {
 
                         countDownTimerView.resetTimer()
 
-                        Log.d("TAG", "onPageScrolled: thomy:: nesxt")
                         motionButton.transitionToEnd()
                     }
 

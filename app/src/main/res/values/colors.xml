@@ -18,4 +18,7 @@
     <color name="blue_bar">#1B50C6</color>
 
     <color name="light">#f1f5e0</color>
+
+    <color name="blackText">#000000</color>
+    <color name="registration_white_color">#FDFEFF</color>
 </resources>

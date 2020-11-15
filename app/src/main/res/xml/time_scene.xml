@@ -12,8 +12,8 @@
 
         <Constraint
             android:id="@id/time"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="206dp"
+            android:layout_height="141dp"
             android:rotation="-360"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintLeft_toLeftOf="parent"
@@ -25,8 +25,8 @@
 
         <Constraint
             android:id="@id/time"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="206dp"
+            android:layout_height="141dp"
             android:rotation="360"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintLeft_toLeftOf="parent"
