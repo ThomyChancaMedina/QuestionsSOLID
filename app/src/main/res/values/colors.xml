@@ -16,4 +16,6 @@
     <color name="transparent">#00000000</color>
     <color name="white_2">#ebebeb</color>
     <color name="blue_bar">#1B50C6</color>
+
+    <color name="light">#f1f5e0</color>
 </resources>

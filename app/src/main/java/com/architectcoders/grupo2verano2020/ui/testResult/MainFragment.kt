@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
-import com.architectcoders.grupo2verano2020.App
+import com.architectcoders.domain.question.Question
 import com.architectcoders.grupo2verano2020.R
-import com.architectcoders.grupo2verano2020.ui.common.EventObserver
 import com.architectcoders.grupo2verano2020.ui.common.app
 import com.architectcoders.grupo2verano2020.ui.common.getViewModelF
 
@@ -33,10 +32,8 @@ class MainFragment : Fragment() {
     private val viewModel: QuestionViewModel by lazy { getViewModelF { component.questionViewModel } }
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_main, container, false)
 
@@ -44,9 +41,6 @@ class MainFragment : Fragment() {
         return rootView
     }
 
-//    private fun setupOrderFragment() {
-//
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,8 +48,9 @@ class MainFragment : Fragment() {
 
         component = app.component.plus(QuestionModule())
 
-
-        setupPager(app)
+        viewModel.question.observe(viewLifecycleOwner, Observer(::getData))
+        viewModel.onGetAllQuestions()
+//        setupPager()
 
 
 
@@ -77,17 +72,46 @@ class MainFragment : Fragment() {
     }
 
 
-    private fun setupPager(action: App) {
-        setHasOptionsMenu(true)
-        rootView.apply {
 
-            adapterQuiz = RecipeAdapter(action)
-            quiz_viewpager.adapter=adapterQuiz
-            viewModel.question.observe(viewLifecycleOwner, Observer(::getData))
-            viewModel.onGetAllQuestions()
+    private fun clickListeners() {
+        add_to_cart.setOnClickListener {
+
+
+
+        }
+    }
+
+    companion object {
+        fun newInstance() = MainFragment()
+    }
+
+    private fun getData(uiModel: QuestionViewModel.UiModel?) {
+
+        when (uiModel) {
+
+            is QuestionViewModel.UiModel.Content -> {
+
+                setupPager(uiModel.question)
+//                adapterQuiz.questions = uiModel.question
+
+//                Log.d("TAG", "getData: thomy::: "+uiModel.question.size)
+            }
+        }
+
+    }
+    private fun setupPager(question: List<Question>) {
+
+
+        rootView.apply {
+            adapterQuiz= RecipeAdapter(app,question)
+            pager.adapter = adapterQuiz
+
+//            adapterQuiz.questions=question
+
+
             if (motionTime != null) {
-                quiz_viewpager.addOnPageChangeListener(motionTime as ViewPager.OnPageChangeListener)
-                quiz_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                pager.addOnPageChangeListener(motionTime as ViewPager.OnPageChangeListener)
+                pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                     override fun onPageScrollStateChanged(p0: Int) {
 
                     }
@@ -108,28 +132,4 @@ class MainFragment : Fragment() {
             }
         }
     }
-
-    private fun clickListeners() {
-        add_to_cart.setOnClickListener {
-
-
-        }
-    }
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
-    private fun getData(uiModel: QuestionViewModel.UiModel?) {
-
-        when (uiModel) {
-
-            is QuestionViewModel.UiModel.Content -> {
-                adapterQuiz.questions = uiModel.question
-                Log.d("TAG", "getData: thomy::: "+uiModel.question.size)
-            }
-        }
-
-    }
-
 }
