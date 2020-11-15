@@ -5,30 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/layout_background"
     android:gravity="center">
 
 
-    <TextView
-        android:id="@+id/question_1"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="Choose a feature to test"
-        android:gravity="center"
-        android:layout_margin="10dp"
-        style="@style/TextAppearance.AppCompat.Title"/>
+<!--    <TextView-->
+<!--        android:id="@+id/question_1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:text="Choose a feature to test"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_margin="10dp"-->
+<!--        style="@style/TextAppearance.AppCompat.Title"/>-->
 
-    <Button
-        android:id="@+id/put_positive"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:backgroundTint="@android:color/holo_green_light"
-        android:text="Go to view" />
+<!--    <Button-->
+<!--        android:id="@+id/put_positive"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:backgroundTint="@android:color/holo_green_light"-->
+<!--        android:text="Go to view" />-->
 
-    <Button
-        android:id="@+id/put_negative"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:backgroundTint="@android:color/holo_red_light"
-        android:text="Go to database" />
+<!--    <Button-->
+<!--        android:id="@+id/put_negative"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:backgroundTint="@android:color/holo_red_light"-->
+<!--        android:text="Go to database" />-->
 
 </androidx.appcompat.widget.LinearLayoutCompat>

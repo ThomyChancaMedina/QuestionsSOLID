@@ -8,30 +8,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.architectcoders.data.repository.TestRepository
 import com.architectcoders.grupo2verano2020.R
-import com.architectcoders.grupo2verano2020.data.database.Test.RoomTestDataSource
-import com.architectcoders.grupo2verano2020.data.server.provider.TestDbDataSource
 import com.architectcoders.grupo2verano2020.databinding.FragmentTestSolidBinding
 import com.architectcoders.grupo2verano2020.ui.common.EventObserver
 import com.architectcoders.grupo2verano2020.ui.common.app
 import com.architectcoders.grupo2verano2020.ui.common.bindingInflate
 import com.architectcoders.grupo2verano2020.ui.common.getViewModelF
-import com.architectcoders.usecases.GetTestQuestion
+import com.architectcoders.grupo2verano2020.ui.testResult.utils.Utils
 import kotlinx.android.synthetic.main.fragment_test_solid.*
 
 
 class TestSolidFragment : Fragment(), TestSolidAdapter.Interaction {
 
-
     lateinit var navController: NavController
-
 
     private lateinit var adapterQuestion: TestSolidAdapter
 
     private var binding: FragmentTestSolidBinding?=null
-
 
     private lateinit var component: TestFragmentComponent
 
@@ -41,7 +34,7 @@ class TestSolidFragment : Fragment(), TestSolidAdapter.Interaction {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = container?.bindingInflate(R.layout.fragment_test_solid,false)
+        binding = container?.bindingInflate(R.layout.fragment_test_solid, false)
 
         return binding!!.root
     }
@@ -51,6 +44,11 @@ class TestSolidFragment : Fragment(), TestSolidAdapter.Interaction {
         navController = view.findNavController()
 
         component= app.component.plus(TestSolidModule())
+
+
+//        val window = activity?.window
+
+        activity?.window?.let { Utils.darkenStatusBar(it, R.color.blue_bar, true) }
 
 
         viewModel.model.observe(viewLifecycleOwner, EventObserver {
@@ -76,8 +74,7 @@ class TestSolidFragment : Fragment(), TestSolidAdapter.Interaction {
 
             val result = compareValues(answers.toList(), answerSummary)
 
-
-            val action=TestSolidFragmentDirections.actionTestSolidToCardQuestionActivity(result)
+            val action=TestSolidFragmentDirections.actionTestSolidToMainFragment(result)
             navController.navigate(action)
 
         }

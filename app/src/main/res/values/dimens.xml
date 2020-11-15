@@ -2,4 +2,10 @@
 <resources>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="text_size_20">20sp</dimen>
+    <dimen name="top_header_horizontal_margin">149dp</dimen>
+    <dimen name="top_header_padding_top">3dp</dimen>
+    <dimen name="top_header_padding_bottom">50dp</dimen>
+
+    <dimen name="horizontal_padding">16dp</dimen>
+
 </resources>

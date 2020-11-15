@@ -8,32 +8,37 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.PagerAdapter
-import com.hariofspades.platter.R
-import com.hariofspades.platter.data.FactoryOutlet
+import com.architectcoders.domain.question.Question
+import com.architectcoders.grupo2verano2020.R
+import kotlin.properties.ReadWriteProperty
 
 
 class RecipeAdapter(private val context: Context) : PagerAdapter() {
 
+    var questions: List<Question> = emptyList()
+
+
+
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val recipes = FactoryOutlet.makeRecipeList()[position]
-        val layout = LayoutInflater.from(context).inflate(R.layout.pager_view, container, false)
+        val quiz = questions[position]
+        val layout = LayoutInflater.from(context).inflate(R.layout.question_view, container, false)
 
         layout.apply {
-            findViewById<TextView>(R.id.dish_name).text = recipes.name
-            findViewById<TextView>(R.id.ingredients).text = recipes.ingredients
-            findViewById<TextView>(R.id.calories).text = recipes.calories
-            findViewById<TextView>(R.id.price).text = recipes.price
+            findViewById<TextView>(R.id.quiz).text = quiz.question
+//            findViewById<TextView>(R.id.ingredients).text = recipes.ingredients
+//            findViewById<TextView>(R.id.calories).text = recipes.calories
+//            findViewById<TextView>(R.id.price).text = recipes.price
 
-            findViewById<ImageView>(R.id.dish_type).apply {
-                if (recipes.isVeg) {
-                    setColorFilter(
-                        ContextCompat.getColor(this.context,
-                            android.R.color.holo_green_dark), android.graphics.PorterDuff.Mode.SRC_IN)
-                } else {
-                    setColorFilter(ContextCompat.getColor(this.context,
-                            android.R.color.holo_red_dark), android.graphics.PorterDuff.Mode.SRC_IN)
-                }
-            }
+//            findViewById<ImageView>(R.id.dish_type).apply {
+//                if (recipes.isVeg) {
+//                    setColorFilter(
+//                        ContextCompat.getColor(this.context,
+//                            android.R.color.holo_green_dark), android.graphics.PorterDuff.Mode.SRC_IN)
+//                } else {
+//                    setColorFilter(ContextCompat.getColor(this.context,
+//                            android.R.color.holo_red_dark), android.graphics.PorterDuff.Mode.SRC_IN)
+//                }
+//            }
         }
 
         container.addView(layout)
@@ -49,7 +54,7 @@ class RecipeAdapter(private val context: Context) : PagerAdapter() {
     }
 
     override fun getCount(): Int {
-        return FactoryOutlet.makeRecipeList().size
+        return questions.size
     }
 
 

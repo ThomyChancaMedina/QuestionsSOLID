@@ -49,4 +49,5 @@
 
     <string name="btn_confirmation">Check</string>
     <string name="todo">TODO</string>
+    <string name="dish_name">Question</string>
 </resources>

@@ -6,14 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
+import com.architectcoders.grupo2verano2020.App
 import com.architectcoders.grupo2verano2020.R
+import com.architectcoders.grupo2verano2020.ui.common.EventObserver
+import com.architectcoders.grupo2verano2020.ui.common.app
+import com.architectcoders.grupo2verano2020.ui.common.getViewModelF
 
 import com.thomy.library.ui.CountDownTime
 import kotlinx.android.synthetic.main.button_view.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
-import kotlinx.android.synthetic.main.platter_view.view.*
-
+import kotlinx.android.synthetic.main.time_view.*
 
 
 class MainFragment : Fragment() {
@@ -22,24 +26,39 @@ class MainFragment : Fragment() {
 
     private lateinit var countDownTimerView: CountDownTime
 
+    private lateinit var adapterQuiz: RecipeAdapter
+
+    private lateinit var component: QuestionComponent
+
+    private val viewModel: QuestionViewModel by lazy { getViewModelF { component.questionViewModel } }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_main, container, false)
-        setupPager()
-        setupOrderFragment()
+
+//        setupOrderFragment()
         return rootView
     }
 
-    private fun setupOrderFragment() {
-
-    }
+//    private fun setupOrderFragment() {
+//
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        countDownTimerView = view.findViewById(R.id.plates)
+        countDownTimerView = view.findViewById(R.id.time)
+
+        component = app.component.plus(QuestionModule())
+
+
+        setupPager(app)
+
+
+
 
         clickListeners()
 
@@ -57,13 +76,18 @@ class MainFragment : Fragment() {
 
     }
 
-    private fun setupPager() {
-        rootView.apply {
-            pager.adapter = RecipeAdapter(activity!!)
 
-            if (motionLayout != null) {
-                pager.addOnPageChangeListener(motionLayout as ViewPager.OnPageChangeListener)
-                pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+    private fun setupPager(action: App) {
+        setHasOptionsMenu(true)
+        rootView.apply {
+
+            adapterQuiz = RecipeAdapter(action)
+            quiz_viewpager.adapter=adapterQuiz
+            viewModel.question.observe(viewLifecycleOwner, Observer(::getData))
+            viewModel.onGetAllQuestions()
+            if (motionTime != null) {
+                quiz_viewpager.addOnPageChangeListener(motionTime as ViewPager.OnPageChangeListener)
+                quiz_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                     override fun onPageScrollStateChanged(p0: Int) {
 
                     }
@@ -84,9 +108,9 @@ class MainFragment : Fragment() {
             }
         }
     }
+
     private fun clickListeners() {
         add_to_cart.setOnClickListener {
-
 
 
         }
@@ -95,4 +119,17 @@ class MainFragment : Fragment() {
     companion object {
         fun newInstance() = MainFragment()
     }
+
+    private fun getData(uiModel: QuestionViewModel.UiModel?) {
+
+        when (uiModel) {
+
+            is QuestionViewModel.UiModel.Content -> {
+                adapterQuiz.questions = uiModel.question
+                Log.d("TAG", "getData: thomy::: "+uiModel.question.size)
+            }
+        }
+
+    }
+
 }

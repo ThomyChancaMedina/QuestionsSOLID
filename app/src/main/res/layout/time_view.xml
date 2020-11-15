@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.architectcoders.grupo2verano2020.ui.testResult.utils.ViewpagerHeader xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/motionLayout"
+    android:id="@+id/motionTime"
     android:layout_width="match_parent"
     android:layout_height="230dp"
     app:layoutDescription="@xml/time_scene">

@@ -14,7 +14,22 @@
             android:defaultValue="-1"
             app:argType="integer" />
         <action
-            android:id="@+id/action_testSolid_to_cardQuestionActivity"
+            android:id="@+id/action_testSolid_to_mainFragment"
+            app:destination="@id/mainFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.architectcoders.grupo2verano2020.ui.testResult.MainFragment"
+        android:label="firth_question"
+        tools:layout="@layout/fragment_main">
+        <argument
+            android:name="id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_mainFragment_to_cardQuestionActivity"
             app:destination="@id/cardQuestionActivity" />
 
     </fragment>
