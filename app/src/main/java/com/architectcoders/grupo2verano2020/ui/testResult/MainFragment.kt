@@ -25,15 +25,17 @@ class MainFragment : Fragment() {
 
     private lateinit var countDownTimerView: CountDownTime
 
-    private lateinit var adapterQuiz: RecipeAdapter
+    private lateinit var adapterQuiz: QuestionAdapter
 
     private lateinit var component: QuestionComponent
 
     private val viewModel: QuestionViewModel by lazy { getViewModelF { component.questionViewModel } }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         rootView = inflater.inflate(R.layout.fragment_main, container, false)
 
         return rootView
@@ -67,10 +69,8 @@ class MainFragment : Fragment() {
     }
 
 
-
     private fun clickListeners() {
         add_to_cart.setOnClickListener {
-
 
 
         }
@@ -88,16 +88,23 @@ class MainFragment : Fragment() {
         }
 
     }
+
     private fun setupPager(question: List<Question>) {
 
 
         rootView.apply {
-            adapterQuiz= RecipeAdapter(app,question)
+            adapterQuiz = QuestionAdapter(app, question)
+
             pager.adapter = adapterQuiz
+
             if (motionTime != null) {
+                answer_one.text = question[0].answers[0].answer
+                answer_two.text = question[0].answers[1].answer
+                Log.d("TAG", "onPageSelected: Thomy:: entro")
                 pager.addOnPageChangeListener(motionTime as ViewPager.OnPageChangeListener)
                 pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                     override fun onPageScrollStateChanged(p0: Int) {
+
 
                     }
 
@@ -107,6 +114,9 @@ class MainFragment : Fragment() {
 
                     override fun onPageSelected(p0: Int) {
 
+
+                        answer_one.text = question[p0].answers[0].answer
+                        answer_two.text = question[p0].answers[1].answer
                         countDownTimerView.resetTimer()
 
                         motionButton.transitionToEnd()
