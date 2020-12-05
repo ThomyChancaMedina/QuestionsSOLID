@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager
 import com.architectcoders.domain.question.Question
 import com.architectcoders.grupo2verano2020.R
 import com.architectcoders.grupo2verano2020.ui.common.app
+import com.architectcoders.grupo2verano2020.ui.common.appF
 import com.architectcoders.grupo2verano2020.ui.common.getViewModelF
 
 import com.thomy.library.ui.CountDownTime
@@ -46,7 +47,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         countDownTimerView = view.findViewById(R.id.time)
 
-        component = app.component.plus(QuestionModule())
+        component = appF.component.plus(QuestionModule())
 
         viewModel.question.observe(viewLifecycleOwner, Observer(::getData))
         viewModel.onGetAllQuestions()
@@ -93,7 +94,7 @@ class MainFragment : Fragment() {
 
 
         rootView.apply {
-            adapterQuiz = QuestionAdapter(app, question)
+            adapterQuiz = QuestionAdapter(appF, question)
 
             pager.adapter = adapterQuiz
 

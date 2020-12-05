@@ -51,7 +51,7 @@ val Context.app: App
     get() = applicationContext as App
 
 
-val Fragment.app: App
+val Fragment.appF: App
     get() = ((activity?.app)
         ?: IllegalStateException("Fragment needs to be attach to the activity to access the App instance"))
             as App

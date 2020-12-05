@@ -53,9 +53,7 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":usecases"))
-//    testImplementation testLibs.values()
 
-//    implementation(fileTree("libs") { include(listOf("*.jar")) })
 
     androidTestImplementation("androidx.test:runner:1.3.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")

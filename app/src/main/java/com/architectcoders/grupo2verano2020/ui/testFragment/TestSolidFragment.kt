@@ -10,10 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.architectcoders.grupo2verano2020.R
 import com.architectcoders.grupo2verano2020.databinding.FragmentTestSolidBinding
-import com.architectcoders.grupo2verano2020.ui.common.EventObserver
-import com.architectcoders.grupo2verano2020.ui.common.app
-import com.architectcoders.grupo2verano2020.ui.common.bindingInflate
-import com.architectcoders.grupo2verano2020.ui.common.getViewModelF
+import com.architectcoders.grupo2verano2020.ui.common.*
 import com.architectcoders.grupo2verano2020.ui.testResult.utils.Utils
 import kotlinx.android.synthetic.main.fragment_test_solid.*
 
@@ -43,7 +40,7 @@ class TestSolidFragment : Fragment(), TestSolidAdapter.Interaction {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
 
-        component= app.component.plus(TestSolidModule())
+        component= appF.component.plus(TestSolidModule())
 
 
 //        val window = activity?.window
