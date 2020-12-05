@@ -1,15 +1,20 @@
 name: Android Build
 
-on: pull_request
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
   validation:
     name: Validation
     runs-on: ubuntu-latest
 
+
   steps:
-
-
 
     steps:
 
@@ -26,4 +31,3 @@ jobs:
 
       - name: Build Project
         run: ./gradlew assemble
-
