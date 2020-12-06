@@ -16,8 +16,6 @@ jobs:
 
   steps:
 
-    steps:
-
       - name: Set Up JDK
         uses: actions/checkout@v2
         with:
