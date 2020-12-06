@@ -9,9 +9,10 @@ on:
       - '*'
 
 jobs:
-  validation:
-    name: Validation
+  build:
+    
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout latest code
         uses: actions/checkout@v2
